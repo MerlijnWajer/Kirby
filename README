@@ -1,0 +1,10 @@
+Kirby Paste Server
+==================
+
+Kirby will swallow anything you paste to him.
+
+
+Kirby uses:
+
+    -   Flask
+    -   Pygments
