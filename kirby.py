@@ -160,7 +160,7 @@ def raw_paste(paste):
 def view_paste(paste):
     r = get_paste(paste)
 
-    lang = r.language if r.language != 'text' else request.args.get('l', None)
+    lang = request.args.get('l') if 'l' in request.args else r.language
     theme = request.args.get('t', 'default')
 
     paste = r.code
@@ -171,7 +171,8 @@ def view_paste(paste):
             lexer = guess_lexer(paste)
         except ClassNotFound:
             pass
-    else:
+
+    if lexer is None:
         try:
             lexer = get_lexer_by_name(lang)
         except:
