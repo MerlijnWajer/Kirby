@@ -27,6 +27,10 @@ CHARS = string.digits + string.ascii_letters
 # * secret key
 # * import tool (or keep same db?)
 # * support creating (empty|new) db
+# * recent public pastes
+# * list of support languages
+# * help page / usage
+# * support themes through sessions
 
 
 SECRET_KEY = 'foo'
@@ -140,10 +144,7 @@ def view_paste(paste):
     if r.private_id is not None:
         abort(403, 'Resource denied')
 
-    lang = 'text'
-    for k in request.args.keys():
-        lang = k
-        break
+    lang = request.args.get('l', 'text')
 
     paste = r.code
 
