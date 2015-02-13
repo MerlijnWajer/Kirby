@@ -16,7 +16,7 @@ from wtforms import TextAreaField, BooleanField
 from wtforms.validators import Length, InputRequired
 
 import pygments
-from pygments.lexers import get_lexer_by_name, guess_lexer
+from pygments.lexers import get_lexer_by_name, guess_lexer, get_all_lexers
 from pygments.formatters import HtmlFormatter
 from pygments.util import ClassNotFound
 
@@ -45,6 +45,9 @@ app.secret_key = '\xecm\xba)I\xd8m\xc4(\x94\xf5\xf2\x1e\xff\xcap\x0cls\xe0\xc3k\
 db = SQLAlchemy(app)
 CsrfProtect(app)
 
+LANGS = {}
+for x in get_all_lexers():
+    LANGS[x[1][0]] = x[0]
 
 # Lodge It db:
 # CREATE TABLE pastes (
@@ -88,9 +91,7 @@ class Paste(db.Model):
 
     # TODO: Parent handling, language handling
     def __init__(self, code, lang, private=None, parent=None):
-        #if language not in LANGUAGES:
-        #    language = 'text'
-        if lang is None:
+        if lang not in LANGS:
             lang = 'text'
 
         self.language = lang
