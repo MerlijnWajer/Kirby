@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
+    <!-- Hackety hack -->
+    {% if theme == 'default' %}
     <img src="/static/kirby_flat.svg" class="kirby"> </img>
+    {% endif %}
     <form method="post" action="/paste" enctype="application/www-form-urlencoded">
         <!-- <textarea cols="80" rows="50" style="opacity: 0.5"> -->
         <textarea class="kirby" name="paste"></textarea>
