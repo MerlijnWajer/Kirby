@@ -38,7 +38,7 @@ SECRET_KEY = 'foo'
 
 app = Flask(__name__)
 app.debug = True
-app.SQLALCHEMY_DATABASE_URI = 'sqlite:///thedb.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///thedb.db'
 app.secret_key = '\xecm\xba)I\xd8m\xc4(\x94\xf5\xf2\x1e\xff\xcap\x0cls\xe0\xc3k\x00\x86'
 
 
