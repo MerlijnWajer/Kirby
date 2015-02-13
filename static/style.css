@@ -35,6 +35,27 @@ div.content {
     border-radius: 30px;
 
     padding: 1em;
+
+    margin-bottom: 1em;
+}
+
+div.footer {
+    position: relative;
+
+    left: 15%;
+    width: 70%;
+
+    /* height: 500px; */
+
+    background-color: rgb(220, 220, 220);
+
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+
+    height: 3em;
+
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 div.pastecontent {
