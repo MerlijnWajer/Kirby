@@ -31,6 +31,7 @@ CHARS = string.digits + string.ascii_letters
 # * list of support languages
 # * help page / usage
 # * support themes through sessions
+# * download paste
 
 
 SECRET_KEY = 'foo'
@@ -125,9 +126,7 @@ def main():
 
     return render_template('newpaste.html', form=form)
 
-# Optional: pass lexer with GET param ?python ; etc
-@app.route('/show/<paste>', methods=['GET'])
-def view_paste(paste):
+def get_paste(paste):
     r = None
 
     try:
@@ -143,6 +142,21 @@ def view_paste(paste):
 
     if r.private_id is not None:
         abort(403, 'Resource denied')
+
+    return r
+
+
+@app.route('/raw/<paste>', methods=['GET'])
+def raw_paste(paste):
+    r = get_paste(paste)
+
+    return Response(r.code, mimetype='text/plain')
+
+
+# Optional: pass lexer with GET param ?python ; etc
+@app.route('/show/<paste>', methods=['GET'])
+def view_paste(paste):
+    r = get_paste(paste)
 
     lang = request.args.get('l', 'text')
 
