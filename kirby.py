@@ -16,7 +16,7 @@ from wtforms import TextAreaField, BooleanField
 from wtforms.validators import Length, InputRequired
 
 import pygments
-from pygments.lexers import get_lexer_by_name
+from pygments.lexers import get_lexer_by_name, guess_lexer
 from pygments.formatters import HtmlFormatter
 from pygments.util import ClassNotFound
 
@@ -153,17 +153,21 @@ def raw_paste(paste):
     return Response(r.code, mimetype='text/plain')
 
 
-# Optional: pass lexer with GET param ?python ; etc
 @app.route('/show/<paste>', methods=['GET'])
 def view_paste(paste):
     r = get_paste(paste)
 
-    lang = request.args.get('l', 'text')
+    lang = r.language if r.language != 'text' else request.args.get('l', None)
+    theme = request.args.get('t', 'default')
 
     paste = r.code
 
     try:
+        if lang == None:
+            lexer = guess_lexer(paste)
+
         lexer = get_lexer_by_name(lang)
+
     except ClassNotFound:
         abort(500, 'Invalid lexer: %s' % lang)
 
@@ -171,7 +175,7 @@ def view_paste(paste):
 
     h = pygments.highlight(paste, lexer, formatter)
 
-    return render_template('viewpaste.html', data=h)
+    return render_template('viewpaste.html', data=h, theme=theme)
 
 @app.route('/syntax.css')
 def get_syntax():
