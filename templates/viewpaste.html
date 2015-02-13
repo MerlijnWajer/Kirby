@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block body %}
+    <img src="/static/kirby_flat.svg" class="kirby"> </img>
+    <div class="pastecontent">
+    {{ data | safe }}
+    </div>
+{% endblock %}
