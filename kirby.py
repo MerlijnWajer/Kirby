@@ -46,7 +46,7 @@ db = SQLAlchemy(app)
 CsrfProtect(app)
 
 
-# Flask:
+# Lodge It db:
 # CREATE TABLE pastes (
 #        paste_id INTEGER NOT NULL,
 #        code TEXT,
@@ -61,6 +61,8 @@ CsrfProtect(app)
 #        FOREIGN KEY(parent_id) REFERENCES pastes (paste_id),
 #        CHECK (handled IN (0, 1))
 #);
+
+#XXX To get syntax.css: HtmlFormatter().get_style_defs('.highlight')),
 
 
 class Paste(db.Model):
@@ -187,13 +189,6 @@ def view_paste(paste):
     h = pygments.highlight(paste, lexer, formatter)
 
     return render_template('viewpaste.html', data=h, theme=theme)
-
-@app.route('/syntax.css')
-def get_syntax():
-    return Response(render_template('syntax.css',
-            data=HtmlFormatter().get_style_defs('.highlight')),
-            mimetype='text/css')
-
 
 @app.route('/paste', methods=['POST'])
 def paste():
