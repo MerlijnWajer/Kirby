@@ -1,6 +1,4 @@
-/* @import url("/static/style.css"); */
 body {
-    /*background-color: rgb(230, 125, 152);*/
     background-color: rgb(55, 55, 55);
 }
 
@@ -10,8 +8,7 @@ div.menu {
     left: 15%;
     width: 70%;
 
-    background-color: #FFFFFF;
-    background-color: rgb(230, 125, 152);
+    background-color: rgb(200, 200, 200);
 
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -32,18 +29,12 @@ div.content {
 
     /* height: 500px; */
 
-    background-color: #FFFFFF;
-    background-color: rgb(230, 125, 152);
+    background-color: rgb(220, 220, 220);
 
     -moz-border-radius: 30px;
     border-radius: 30px;
 
     padding: 1em;
-
-    /*
-    background:url(/static/kirby_flat.svg) no-repeat;
-    background-size: 100%;
-    */
 }
 
 div.pastecontent {
@@ -57,7 +48,7 @@ textarea.kirby {
     resize: none;
 
     opacity: 0.7;
-    background-color: rgb(230, 125, 152);
+    background-color: rgb(230, 230, 230);
 
     left: 5%;
     width: 90%;
