@@ -163,14 +163,24 @@ def view_paste(paste):
 
     paste = r.code
 
-    try:
-        if lang == None:
+    lexer = None
+    if lang == None:
+        try:
             lexer = guess_lexer(paste)
+        except ClassNotFound:
+            pass
+    else:
+        try:
+            lexer = get_lexer_by_name(lang)
+        except:
+            abort(500, 'Invalid lexer: %s' % lang)
 
-        lexer = get_lexer_by_name(lang)
+    if lexer is None:
+        try:
+            lexer = get_lexer_by_name('text')
+        except:
+            abort(500, 'Invalid lexer: %s' % lang)
 
-    except ClassNotFound:
-        abort(500, 'Invalid lexer: %s' % lang)
 
     formatter = HtmlFormatter(linenos=True)#, cssclass='syntax')#, style='friendly')
 
