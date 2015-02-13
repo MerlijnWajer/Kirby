@@ -38,7 +38,7 @@ SECRET_KEY = 'foo'
 
 app = Flask(__name__)
 app.debug = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///thedb.db'
+app.SQLALCHEMY_DATABASE_URI = 'sqlite:///thedb.db'
 app.secret_key = '\xecm\xba)I\xd8m\xc4(\x94\xf5\xf2\x1e\xff\xcap\x0cls\xe0\xc3k\x00\x86'
 
 
@@ -124,7 +124,8 @@ class PasteForm(Form):
 def main():
     form = PasteForm()
 
-    return render_template('newpaste.html', form=form)
+    return render_template('newpaste.html', form=form,
+            theme=request.args.get('t', 'default'))
 
 def get_paste(paste):
     r = None

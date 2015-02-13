@@ -4,36 +4,11 @@ body {
 }
 
 div.menu {
-    position: relative;
-
-    left: 15%;
-    width: 70%;
-
     background-color: rgb(200, 200, 200);
-
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-
-    height: 3em;
-
-    padding-left: 1em;
-    padding-right: 1em;
-
-    margin-bottom: 1em;
 }
 
 div.content {
-    position: relative;
-
-    left: 15%;
-    width: 70%;
-
-    background-color: rgb(200, 200, 200);
-
-    -moz-border-radius: 30px;
-    border-radius: 30px;
-
-    padding: 1em;
+    background-color: rgb(220, 220, 220);
 }
 
 textarea.kirby {
@@ -42,19 +17,6 @@ textarea.kirby {
 
     opacity: 0.7;
     background-color: rgb(200, 200, 200);
-
-    z-index: 2;
-    position: relative;
-}
-
-img.kirby {
-    width: 90%;
-    height: 80%;
-    top: 5%;
-    left: 5%;
-    position: absolute;
-
-    z-index: 1;
 }
 
 div.kirby {
