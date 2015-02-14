@@ -207,8 +207,10 @@ def view_paste(paste):
 
     h = pygments.highlight(paste, lexer, formatter)
 
+    pasteid = r.private_id if r.private_id  else r.paste_id
+
     return render_template('viewpaste.html', data=h, theme=get_theme(),
-            langs=LANGS)
+            langs=LANGS, pasteid=pasteid)
 
 @app.route('/usage', methods=['GET'])
 def usage():
