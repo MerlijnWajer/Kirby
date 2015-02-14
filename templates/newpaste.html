@@ -4,18 +4,19 @@
 
     <form method="post" action="/paste"
         enctype="application/www-form-urlencoded" style="display: inline;">
-        <input type="submit" class="" value="Paste" style="display: inline;">
-        Private: <input type="checkbox" class="" value="Private" name="private"
-        style="display: inline;">
 
         <select name="lang">
             {% for lang in langs %}
-            {% if lang == 'text' %}
+            {% if lang == 'delphi' %}
             <option selected="selected">{{ lang }} </option>
             {% endif %}
             <option>{{ lang }} </option>
             {% endfor %}
         </select>
+
+        <input type="submit" class="" value="Paste" style="display: inline;">
+        Private: <input type="checkbox" class="" value="Private" name="private"
+        style="display: inline;">
 
     </li>
 
