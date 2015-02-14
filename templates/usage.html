@@ -1,4 +1,41 @@
 {% extends "base.html" %}
+
 {% block body %}
-    <h2> Usage: </h2>
+    <h1>Usage</h1>
+
+    <h2>Themes</h2>
+
+    <p>Themes can set through the <a href="/theme">Themes</a> page. The theme will
+    be saved for your browser.</p>
+
+    <h3> Support themes: </h3>
+
+    <ul>
+        {% for t, v in themes.items() %}
+        <li> <a href="?t={{ t }}">{{ v }}</a></li>
+        {% endfor %}
+
+    </ul>
+
+    <h2>Highlighting</h2>
+
+    <p>Kirby tries to autodetect the language of the paste, and highlight
+    appropriately.</p>
+
+    <p>If you prefer to not have any highlighting, you can set the
+    highlighting language to 'text', by appending "?l=text" at the end of a
+    paste URL.</p>
+
+    <p> Alternatively, you can change highlighting for any paste by appending
+    "?l=LANGUAGEHERE" to the URL. Below is a list of all support languages</p>
+
+    <h3> Supported languages </h3>
+
+    <ul>
+        {% for f in langs %}
+        <li> {{ f }} </li>
+        {% endfor %}
+
+    </ul>
+
 {% endblock %}

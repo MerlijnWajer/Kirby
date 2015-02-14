@@ -48,7 +48,8 @@ LANGS = {}
 for x in get_all_lexers():
     LANGS[x[1][0]] = x[0]
 
-THEMES = ['default', 'plain']
+THEMES = {'default' : 'Kirby',
+         'plain' : 'Plain'}
 
 # Lodge It db:
 # CREATE TABLE pastes (
@@ -210,13 +211,15 @@ def view_paste(paste):
 @app.route('/usage', methods=['GET'])
 def usage():
     theme = request.args.get('t', 'default')
-    return render_template('usage.html', theme=get_theme())
+    return render_template('usage.html', theme=get_theme(), langs=LANGS,
+            themes=THEMES)
 
 
 @app.route('/theme', methods=['GET'])
 def themes():
     theme = request.args.get('t', 'default')
-    return render_template('theme.html', theme=get_theme())
+    return render_template('theme.html', theme=get_theme(),
+            themes=THEMES)
 
 
 @app.route('/paste', methods=['POST'])
