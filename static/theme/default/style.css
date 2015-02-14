@@ -8,7 +8,8 @@ div.menu {
 }
 
 div.content {
-    background-color: rgb(230, 125, 152);
+    background-image: url(/static/kirby_flat.svg);
+    background-size: 100% 95%;
 }
 
 div.footer {

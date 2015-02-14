@@ -192,6 +192,11 @@ def view_paste(paste):
 
     return render_template('viewpaste.html', data=h, theme=theme)
 
+@app.route('/usage', methods=['GET'])
+def usage():
+    theme = request.args.get('t', 'default')
+    return render_template('usage.html', theme=theme)
+
 @app.route('/paste', methods=['POST'])
 def paste():
     form = PasteForm(request.form)
