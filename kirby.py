@@ -132,6 +132,7 @@ def main():
 
 def get_paste(paste):
     r = None
+    priv_provided = False
 
     try:
         pid = int(paste)
@@ -140,11 +141,12 @@ def get_paste(paste):
     except ValueError:
         pid = paste
         r = db.session.query(Paste).filter(Paste.private_id == pid).first()
+        priv_provided = True
 
     if r is None:
         abort(404, 'No such paste')
 
-    if r.private_id is not None:
+    if not priv_provided and r.private_id is not None:
         abort(403, 'Resource denied')
 
     return r
