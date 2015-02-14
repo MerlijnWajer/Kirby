@@ -30,7 +30,6 @@ CHARS = string.digits + string.ascii_letters
 # * recent public pastes
 # * list of support languages
 # * help page / usage
-# * support themes through sessions
 # * download paste
 
 
@@ -212,6 +211,13 @@ def view_paste(paste):
 def usage():
     theme = request.args.get('t', 'default')
     return render_template('usage.html', theme=get_theme())
+
+
+@app.route('/theme', methods=['GET'])
+def themes():
+    theme = request.args.get('t', 'default')
+    return render_template('theme.html', theme=get_theme())
+
 
 @app.route('/paste', methods=['POST'])
 def paste():
