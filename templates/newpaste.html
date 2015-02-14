@@ -1,15 +1,22 @@
 {% extends "base.html" %}
+{% block menu %}
+    <li>
+
+    <form method="post" action="/paste"
+        enctype="application/www-form-urlencoded" style="display: inline;">
+        <input type="submit" class="" value="Paste" style="display: inline;">
+        Private: <input type="checkbox" class="" value="Private" name="private"
+        style="display: inline;">
+
+    </li>
+
+{% endblock menu %}
 {% block body %}
-    <form method="post" action="/paste" enctype="application/www-form-urlencoded">
         <!-- <textarea cols="80" rows="50" style="opacity: 0.5"> -->
         <textarea class="kirby" name="paste"></textarea>
 
-        <div style="margin: 4em;">
-            <input type="submit" class="" value="Paste">
-            Private: <input type="checkbox" class="" value="Private" name="private">
-        </div>
 
         {{ form.hidden_tag() }}
-    </form>
 
+</form>
 {% endblock %}

@@ -69,11 +69,10 @@ textarea.kirby {
     opacity: 0.7;
     background-color: rgb(230, 230, 230);
 
-    left: 5%;
     width: 90%;
+    min-height: 500px;
+    height: 100%;
 
-    top: 10%;
-    height: 500px;
 
     overflow: auto;
 
