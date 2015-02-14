@@ -49,6 +49,8 @@ LANGS = {}
 for x in get_all_lexers():
     LANGS[x[1][0]] = x[0]
 
+THEMES = ['default', 'plain']
+
 # Lodge It db:
 # CREATE TABLE pastes (
 #        paste_id INTEGER NOT NULL,
@@ -122,13 +124,26 @@ class PasteForm(Form):
     private =  BooleanField('private', [])
     paste = TextAreaField('paste', [InputRequired(), Length(min=5)])
 
+def get_theme():
+    if 't' in request.args:
+        theme = request.args['t']
+        if theme in THEMES:
+            session['theme'] = theme
+
+            return theme
+
+    if 'theme' in session:
+        return session['theme']
+
+    return 'default'
+
 
 @app.route('/')
 def main():
     form = PasteForm()
 
     return render_template('newpaste.html', form=form,
-            theme=request.args.get('t', 'default'))
+            theme=get_theme())
 
 def get_paste(paste):
     r = None
@@ -164,7 +179,6 @@ def view_paste(paste):
     r = get_paste(paste)
 
     lang = request.args.get('l') if 'l' in request.args else r.language
-    theme = request.args.get('t', 'default')
 
     paste = r.code
 
@@ -192,12 +206,12 @@ def view_paste(paste):
 
     h = pygments.highlight(paste, lexer, formatter)
 
-    return render_template('viewpaste.html', data=h, theme=theme)
+    return render_template('viewpaste.html', data=h, theme=get_theme())
 
 @app.route('/usage', methods=['GET'])
 def usage():
     theme = request.args.get('t', 'default')
-    return render_template('usage.html', theme=theme)
+    return render_template('usage.html', theme=get_theme())
 
 @app.route('/paste', methods=['POST'])
 def paste():
