@@ -12,7 +12,7 @@ from datetime import datetime
 from flask_wtf import Form
 from flask_wtf.csrf import CsrfProtect
 
-from wtforms import TextAreaField, BooleanField
+from wtforms import TextAreaField, BooleanField, SelectField
 from wtforms.validators import Length, InputRequired
 
 import pygments
@@ -28,8 +28,6 @@ CHARS = string.digits + string.ascii_letters
 # * import tool (or keep same db?)
 # * support creating (empty|new) db
 # * recent public pastes
-# * list of support languages
-# * help page / usage
 # * download paste
 
 
@@ -123,6 +121,9 @@ class Paste(db.Model):
 class PasteForm(Form):
     private =  BooleanField('private', [])
     paste = TextAreaField('paste', [InputRequired(), Length(min=5)])
+    lang = SelectField('language', choices=([(x, x) for x in LANGS.keys()]))
+
+
 
 def get_theme():
     if 't' in request.args:
@@ -143,7 +144,7 @@ def main():
     form = PasteForm()
 
     return render_template('newpaste.html', form=form,
-            theme=get_theme())
+            theme=get_theme(), langs=LANGS)
 
 def get_paste(paste):
     r = None
@@ -234,7 +235,7 @@ def paste():
             code = form.paste.data
 
             try:
-                p = Paste(code, lang=None, private=priv_id if form.private.data
+                p = Paste(code, lang=form.lang.data, private=priv_id if form.private.data
                         else None)
                 db.session.add(p)
                 db.session.commit()
