@@ -1,4 +1,24 @@
 {% extends "base.html" %}
+{% block menu %}
+<li>
+<form method="get" action="">
+
+<select name="l">
+    {% for lang in langs %}
+    {% if lang == 'text' %}
+    <option selected="selected">{{ lang }} </option>
+    {% endif %}
+    <option>{{ lang }} </option>
+    {% endfor %}
+</select>
+
+<input type=submit value="View">
+</form>
+
+
+</li>
+
+{% endblock %}
 {% block body %}
     <div class="pastecontent">
     {{ data | safe }}
