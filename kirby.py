@@ -166,6 +166,7 @@ def get_paste(paste):
 
 
 @app.route('/raw/<paste>', methods=['GET'])
+@app.route('/raw/<paste>/', methods=['GET'])
 def raw_paste(paste):
     r = get_paste(paste)
 
@@ -173,6 +174,7 @@ def raw_paste(paste):
 
 
 @app.route('/show/<paste>', methods=['GET'])
+@app.route('/show/<paste>/', methods=['GET'])
 def view_paste(paste):
     r = get_paste(paste)
 
