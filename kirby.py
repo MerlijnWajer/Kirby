@@ -24,18 +24,15 @@ import string
 CHARS = string.digits + string.ascii_letters
 
 # TODO:
-# * secret key
-# * import tool (or keep same db?)
-# * support creating (empty|new) db
 # * recent public pastes
 # * download paste
 
 
-SECRET_KEY = 'foo'
-
 app = Flask(__name__)
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///thedb.db'
+
+# Don't use this exact key on your (public) instance
 app.secret_key = '\xecm\xba)I\xd8m\xc4(\x94\xf5\xf2\x1e\xff\xcap\x0cls\xe0\xc3k\x00\x86'
 
 
