@@ -114,7 +114,7 @@ class Paste(db.Model):
         if self.private_id:
             return self.private_id
         return str(self.paste_id)
-            
+
 class PasteForm(Form):
     private =  BooleanField('private', [])
     paste = TextAreaField('paste', [InputRequired(), Length(min=5)])
@@ -165,7 +165,6 @@ def get_paste(paste):
     return r
 
 
-@app.route('/raw/<paste>', methods=['GET'])
 @app.route('/raw/<paste>/', methods=['GET'])
 def raw_paste(paste):
     r = get_paste(paste)
@@ -173,7 +172,6 @@ def raw_paste(paste):
     return Response(r.code, mimetype='text/plain')
 
 
-@app.route('/show/<paste>', methods=['GET'])
 @app.route('/show/<paste>/', methods=['GET'])
 def view_paste(paste):
     r = get_paste(paste)
@@ -211,21 +209,21 @@ def view_paste(paste):
     return render_template('viewpaste.html', data=h, theme=get_theme(),
             langs=LANGS, pasteid=pasteid)
 
-@app.route('/usage', methods=['GET'])
+@app.route('/usage/', methods=['GET'])
 def usage():
     theme = request.args.get('t', 'default')
     return render_template('usage.html', theme=get_theme(), langs=LANGS,
             themes=THEMES)
 
 
-@app.route('/theme', methods=['GET'])
+@app.route('/theme/', methods=['GET'])
 def themes():
     theme = request.args.get('t', 'default')
     return render_template('theme.html', theme=get_theme(),
             themes=THEMES)
 
 
-@app.route('/paste', methods=['POST'])
+@app.route('/paste/', methods=['POST'])
 def paste():
     form = PasteForm(request.form)
 
