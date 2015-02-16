@@ -39,9 +39,12 @@ app.secret_key = '\xecm\xba)I\xd8m\xc4(\x94\xf5\xf2\x1e\xff\xcap\x0cls\xe0\xc3k\
 db = SQLAlchemy(app)
 csrf = CsrfProtect(app)
 
-LANGS = {}
+LANGS = []
 for x in get_all_lexers():
-    LANGS[x[1][0]] = x[0]
+    LANGS.append(x[1][0])
+    #LANGS[x[1][0]] = x[0]
+
+LANGS = sorted(LANGS)
 
 THEMES = {
     'default' : 'Kirby',
@@ -121,7 +124,7 @@ class Paste(db.Model):
 class PasteForm(Form):
     private =  BooleanField('private', [])
     paste = TextAreaField('paste', [InputRequired(), Length(min=5)])
-    lang = SelectField('language', choices=([(x, x) for x in LANGS.keys()]))
+    lang = SelectField('language', choices=([(x, x) for x in LANGS]))
 
 
 
@@ -210,7 +213,7 @@ def view_paste(paste):
     pasteid = r.private_id if r.private_id  else r.paste_id
 
     return render_template('viewpaste.html', data=h, theme=get_theme(),
-            langs=LANGS, pasteid=pasteid)
+            langs=LANGS, pasteid=pasteid, currlang=lexer.aliases[0])
 
 @app.route('/usage/', methods=['GET'])
 def usage():
