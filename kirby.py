@@ -43,8 +43,11 @@ LANGS = {}
 for x in get_all_lexers():
     LANGS[x[1][0]] = x[0]
 
-THEMES = {'default' : 'Kirby',
-         'plain' : 'Plain'}
+THEMES = {
+    'default' : 'Kirby',
+    'plain' : 'Plain',
+    'clear' : 'Clear'
+}
 
 # Lodge It db:
 # CREATE TABLE pastes (
