@@ -37,7 +37,7 @@ app.secret_key = '\xecm\xba)I\xd8m\xc4(\x94\xf5\xf2\x1e\xff\xcap\x0cls\xe0\xc3k\
 
 
 db = SQLAlchemy(app)
-CsrfProtect(app)
+csrf = CsrfProtect(app)
 
 LANGS = {}
 for x in get_all_lexers():
@@ -226,6 +226,12 @@ def themes():
             themes=THEMES)
 
 
+@csrf.exempt
+@app.route('/paste/', methods=['GET'])
+def pasteget():
+        return redirect('/')
+
+
 @app.route('/paste/', methods=['POST'])
 def paste():
     form = PasteForm(request.form)
@@ -246,7 +252,11 @@ def paste():
             except IntegrityError as e:
                 print('Failed to add paste:', p, e)
 
-    abort(500, 'Failed to add paste')
+    s = ''
+    for k, v in form.errors.items():
+        s += "%s;" % v
+
+    abort(418, 'Failed to add paste: %s' % s)
 
 if __name__ == '__main__':
     db.create_all()
