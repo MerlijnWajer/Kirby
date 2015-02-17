@@ -7,7 +7,8 @@ html,body {
 
 body {
   font-family:'tahoma','sans serif','arial';
-  background: linear-gradient(#FFF, #DDD);
+  background-color: #2A2A2A; /*old browsers*/
+  background: radial-gradient(ellipse at center, #404040 0%,#505050 0%,#111111 100%); /* W3C */
   background-attachment:fixed;
 }
 
@@ -28,13 +29,13 @@ div.menu {
   margin:0; padding:0;
   margin:0px;
   width:100%;
-  
-  background: linear-gradient(#808080, #8F8F8F);
+
+  background: linear-gradient(#333, #222);
   border-radius:0px;
 
-  border-bottom: 1px solid #777;
-  box-shadow:0px 0px 10px #AAA;
-  
+  border-bottom: 1px solid #111;
+  box-shadow:0px 0px 10px #000;
+
   color:#FFF;
   text-align: left;
   font-size:1.1em;
@@ -55,26 +56,27 @@ div.menu div.kirby {
 div.footer {
   position:static;
   width:60%;
-  min-width:700px;
+  left: 0;
   margin-left: auto;
   margin-right: auto;
   background:none;
+  color:#AAA;
+  min-width:700px;
 }
 
 div.footer a {
-  color:blue;
-  padding:2px 5px 4px 5px;
+  color:#00AAFF;
+  padding:5px;
 }
 
 div.footer a:hover {
   color:#00AAFF;
-  padding:1px 4px 3px 4px;
-  border:1px solid #bbb;
-  background:#eee;
-  background: linear-gradient(#f3f3f3, #e3e3e3);
+  padding:4px;
+  border:1px solid #333;
+  background:#1f1f1f;
   border-radius:3px;
   text-decoration:none;
-  box-shadow: inset 0px 0px 4px #FFF;
+  box-shadow: inset 0px 0px 3px #0f0f0f;
 }
 
 div.content {
@@ -84,13 +86,13 @@ div.content {
   margin:0px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow:0px 0px 15px #AAA;
+  box-shadow:0px 0px 10px #222;
   background-color: #FAFAFA;
-  border-radius:0px;
+  background: linear-gradient(to right, #F4F4F4, #FAFAFA 5%);
   padding:0.2em 1em 2em 1em;
-  border-width:0px;
-  margin-bottom:0px;
   border-radius:0px 0px 5px 5px;
+  border-width:1px;
+  border-color:#222;
 }
 
 div.pastecontent {
@@ -128,12 +130,7 @@ ul.kirby li:first-child {
   margin: 0px;
   margin-right:30px;
   margin-top:-5px; /* because inline-block */
-  padding:5px 10px 5px 10px;
-
-  background:#353535;
-  box-shadow: inset 0px 0px 3px #111;
-  border:1px solid #aaa;
-  border-radius:5px;
+  padding:2px;
   
   text-transform: uppercase;
   text-shadow:0px -1px #111;
@@ -142,30 +139,29 @@ ul.kirby li:first-child {
   display:inline-block; /* needed for transformation */
   -ms-transform: skew(-8deg); /* IE 9 */
   -webkit-transform: skew(-8deg); /* Chrome, Safari, Opera */
-  transform: skew(-8deg);
+  transform: skew(-8deg);*/
 }
-
 
 ul.kirby li a {
   font-size:0.8em;
   color:#FFF;
-  padding:3px 14px 3px 14px;
-  border:1px solid #333;
-  background: linear-gradient(#444, #333);
+  padding:4px 14px 4px 14px;
+  border:1px solid #262626;
+  background: linear-gradient(#2055b0, #003c93);
   border-radius:3px;
-  text-decoration: none;
-  box-shadow: inset 0px 0px 3px #222;
+  text-decoration:none;
+  box-shadow: 1px 1px 1px #333;
 }
 
 ul.kirby li a:hover {
   font-size:0.8em;
   color:#00AAFF;
-  padding:3px 14px 3px 14px;
+  padding:4px 14px 5px 14px;
   border:1px solid #333;
-  background: linear-gradient(#444, #333);
+  background: linear-gradient(#222, #111);
   border-radius:3px;
   text-decoration: none;
-  box-shadow: inset 0px 0px 3px #222;
+  box-shadow: inset 0px 0px 3px #000;
 }
 
 ul.kirby li select {
