@@ -49,7 +49,8 @@ LANGS = sorted(LANGS)
 THEMES = {
     'default' : 'Kirby',
     'plain' : 'Plain',
-    'clear' : 'Clear'
+    'clear' : 'Clear',
+    'clear_dark' : 'Clear (dark)'
 }
 
 # Lodge It db:
